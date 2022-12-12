@@ -293,6 +293,7 @@ def main(ens_root, input_folder, polygons_folder, base_seed):
         ]
     df = pd.DataFrame.from_records(containments)
     df.groupby('date').sum().to_csv(res_root / "tables/co2_volumes.csv")
+    print(f"{df['total'].max()}\n")
 
 
 if __name__ == '__main__':
@@ -302,6 +303,6 @@ if __name__ == '__main__':
             current / f"realization-{i}",
             current / "input",
             current / "../01_drogon_ahm/realization-0/iter-0/share/results/polygons",
-            i,
+            i + 42,
         )
     print(f"Cache efficiency: {_map_polygons.cache_info()}")
