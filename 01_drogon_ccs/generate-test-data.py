@@ -287,13 +287,12 @@ def main(ens_root, input_folder, polygons_folder, base_seed):
         containments += [
             dict(
                 **generate_date_table_entry(tmpl, s, boundary, (base_seed + 1) % 2**32),
-                date=t,
+                date=f"{t[:4]}-{t[4:6]}-{t[6:8]}",
             )
             for t, s in sgas.items()
         ]
     df = pd.DataFrame.from_records(containments)
     df.groupby('date').sum().to_csv(res_root / "tables/co2_volumes.csv")
-    print(f"{df['total'].max()}\n")
 
 
 if __name__ == '__main__':
